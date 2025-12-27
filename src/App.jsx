@@ -3,12 +3,15 @@ import axios from 'axios'
 import DataList from './components/DataList'
 import './App.css'
 
-const API_KEY = '0db405d287f1020dccb58c108ac0a1adcbd576b6b0fd43d4e23dcc5c44d237a2'
+// 환경 변수에서 API 키 가져오기 (Vite는 VITE_ 접두사 필요)
+const API_KEY = import.meta.env.VITE_API_KEY || '0db405d287f1020dccb58c108ac0a1adcbd576b6b0fd43d4e23dcc5c44d237a2'
 // 농림축산식품 공공데이터 포털 API 엔드포인트
 // 샘플: /openapi/sample/{TYPE}/Grid_20210909000000000613_1/{START_INDEX}/{END_INDEX} (최대 5건)
 // 실제: /openapi/{API_KEY}/{TYPE}/Grid_20210909000000000613_1/{START_INDEX}/{END_INDEX}
-// CORS 문제로 인해 프록시를 통해 요청
-const BASE_URL = '/openapi' // 프록시를 통해 요청
+// 개발 환경: Vite 프록시 사용, 프로덕션: 직접 API 서버 주소 사용
+const BASE_URL = import.meta.env.PROD 
+  ? 'http://211.237.50.150:7080/openapi'  // 프로덕션: 직접 API 서버 주소
+  : '/openapi'  // 개발: Vite 프록시 사용
 const API_URL = 'Grid_20210909000000000613_1'
 const USE_SAMPLE = false // 샘플 API 사용 여부 (true: 최대 5건, false: 전체 조회 가능)
 

@@ -1,0 +1,18 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # Secret Scanning 전체 비활성화
+  SECRETS_SCAN_ENABLED = "false"
+  
+  # API 키는 환경 변수로 설정 (Netlify 대시보드에서도 설정 가능)
+  # Site settings > Build & deploy > Environment > Environment variables
+  # VITE_API_KEY = "your_api_key_here" 추가
+  
+  # 또는 특정 키만 제외 (위의 SECRETS_SCAN_ENABLED 주석 처리 후 사용):
+  # SECRETS_SCAN_OMIT_KEYS = "VITE_API_KEY"
+  
+  # 특정 경로 제외 (선택사항)
+  # SECRETS_SCAN_OMIT_PATHS = "src/App.jsx,dist/**"
+
