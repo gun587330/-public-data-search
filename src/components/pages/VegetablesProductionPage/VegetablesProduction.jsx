@@ -67,14 +67,11 @@ function VegetablesProduction() {
       <div className="vegetables-header">
         <button onClick={() => navigate('/')} className="back-button">← 뒤로가기</button>
         <h2>🥬 채소류 생산량 통계</h2>
-      </div>
-
-      {error && <div className="error-banner">{error}</div>}
-
-      {availableYears.length > 0 && (
-        <div className="year-filter">
-          <label>
-            년도 선택:
+        {availableYears.length > 0 && (
+          <div className="year-filter-inline">
+            <label>
+              년도 선택
+            </label>
             <select 
               value={selectedYear || ''} 
               onChange={(e) => setSelectedYear(e.target.value ? parseInt(e.target.value) : null)}
@@ -84,9 +81,11 @@ function VegetablesProduction() {
                 <option key={year} value={year}>{year}년</option>
               ))}
             </select>
-          </label>
-        </div>
-      )}
+          </div>
+        )}
+      </div>
+
+      {error && <div className="error-banner">{error}</div>}
 
       <div className="vegetables-summary">
         <p>총 {filteredData.length}개 품목</p>
