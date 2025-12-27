@@ -222,9 +222,6 @@ function SearchInfo() {
 
   return (
     <div className="search-info">
-      <div className="search-header">
-        <h3>🔍 데이터셋 검색</h3>
-      </div>
 
       <div className="search-filters">
         <div className="filter-group">

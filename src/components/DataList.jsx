@@ -28,7 +28,6 @@ function DataList({ data }) {
   return (
     <div className="data-list-container">
       <div className="data-summary">
-        <h2>조회 결과: {data.length}건</h2>
       </div>
 
       <div className="data-cards">

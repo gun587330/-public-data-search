@@ -1,5 +1,5 @@
-import SearchInfo from '../SearchInfo'
-import MenuPanel from '../MenuPanel'
+import SearchInfo from '../../SearchInfo'
+import MenuPanel from '../../MenuPanel'
 import './HomePage.css'
 
 function HomePage() {
