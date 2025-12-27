@@ -26,13 +26,11 @@ npm run build
 
 ### API 파라미터
 
-- **API_KEY**: `0db405d287f1020dccb58c108ac0a1adcbd576b6b0fd43d4e23dcc5c44d237a2`
 - **TYPE**: `json` (기본값: `xml`)
 - **API_URL**: `Grid_20210909000000000613_1`
 - **START_INDEX**: 요청 시작 위치 (기본값: 1)
 - **END_INDEX**: 요청 종료 위치 (기본값: 5)
 - **KOREAN_NM**: 데이터셋명 (선택)
-- **INSTT_NM**: 제공기관 (선택)
 
 ### CORS 문제 해결
 

@@ -23,3 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
+# Netlify 설정 (선택사항 - 공유하려면 제거)
+# .netlify/secret-scanning.toml
+
