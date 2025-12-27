@@ -1,7 +1,10 @@
 .vegetables-production {
   padding: 20px;
-  height: 100%;
-  overflow-y: auto;
+  min-height: calc(100vh - 150px);
+  max-height: calc(100vh - 150px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .vegetables-header {
@@ -9,6 +12,7 @@
   align-items: center;
   gap: 15px;
   margin-bottom: 20px;
+  flex-shrink: 0;
 }
 
 .back-button {
@@ -61,6 +65,7 @@
   padding: 15px;
   background: #f8f9fa;
   border-radius: 8px;
+  flex-shrink: 0;
 }
 
 .year-filter label {
@@ -84,17 +89,49 @@
   border-color: #667eea;
 }
 
+.error-banner {
+  margin-bottom: 20px;
+  padding: 12px 20px;
+  background: #ff6b6b;
+  color: white;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
 .vegetables-summary {
   margin-bottom: 15px;
   color: #666;
   font-size: 0.9rem;
+  flex-shrink: 0;
 }
 
 .vegetables-table-container {
-  overflow-x: auto;
+  flex: 1;
+  overflow: auto;
   background: white;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  min-height: 0;
+}
+
+.vegetables-table-container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.vegetables-table-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.vegetables-table-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.vegetables-table-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .vegetables-table {
@@ -106,6 +143,9 @@
 .vegetables-table thead {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .vegetables-table th {
@@ -113,6 +153,9 @@
   text-align: left;
   font-weight: 600;
   font-size: 0.9rem;
+  position: sticky;
+  top: 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .vegetables-table td {

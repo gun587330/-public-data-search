@@ -1,14 +1,10 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import { fetchVegetablesData, getRankedData } from './api'
 import './VegetablesProduction.css'
 
-const API_KEY = import.meta.env.VITE_API_KEY || '0db405d287f1020dccb58c108ac0a1adcbd576b6b0fd43d4e23dcc5c44d237a2'
-const BASE_URL = import.meta.env.PROD 
-  ? '/.netlify/functions/proxy/openapi'
-  : '/openapi'
-const VEGETABLES_API_URL = 'Grid_20151029000000000254_1' // 채소류 생산실적 API
-
-function VegetablesProduction({ onBack }) {
+function VegetablesProduction() {
+  const navigate = useNavigate()
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -16,39 +12,15 @@ function VegetablesProduction({ onBack }) {
   const [availableYears, setAvailableYears] = useState([])
 
   useEffect(() => {
-    fetchData()
+    loadData()
   }, [])
 
-  const fetchData = async () => {
+  const loadData = async () => {
     try {
       setLoading(true)
       setError(null)
 
-      // 전체 데이터 가져오기 (최대 1000건)
-      const url = `${BASE_URL}/${API_KEY}/json/${VEGETABLES_API_URL}/1/1000`
-      
-      const response = await axios.get(url, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        responseType: 'json'
-      })
-
-      let apiData = []
-      const data = response.data
-
-      // 응답 구조 파싱
-      if (data[VEGETABLES_API_URL]) {
-        const apiResponse = data[VEGETABLES_API_URL]
-        if (apiResponse.row) {
-          apiData = Array.isArray(apiResponse.row) ? apiResponse.row : [apiResponse.row]
-        }
-      } else if (data.row) {
-        apiData = Array.isArray(data.row) ? data.row : [data.row]
-      }
-
-      // 데이터 필터링 및 처리
-      const processedData = processData(apiData)
+      const processedData = await fetchVegetablesData()
       setData(processedData)
 
       // 사용 가능한 년도 추출
@@ -57,44 +29,11 @@ function VegetablesProduction({ onBack }) {
       if (years.length > 0 && !selectedYear) {
         setSelectedYear(years[0]) // 최신 년도 선택
       }
-
     } catch (err) {
-      console.error('API 호출 오류:', err)
-      setError(err.response?.data?.result?.message || err.message || 'API 연결 실패')
+      setError(err.message)
     } finally {
       setLoading(false)
     }
-  }
-
-  const processData = (rawData) => {
-    // 1. 전국 데이터만 필터링 (SE = "전 국")
-    // 2. 실제 작물명만 필터링 (VGETBL_CL != "계")
-    // 3. 숫자 변환
-    const filtered = rawData
-      .filter(item => item.SE === '전 국' && item.VGETBL_CL && item.VGETBL_CL !== '계')
-      .map(item => ({
-        ...item,
-        OUTTRN_SM: parseFloat(item.OUTTRN_SM) || 0,
-        AR_SM: parseFloat(item.AR_SM) || 0,
-        STGCO_SM: parseFloat(item.STGCO_SM) || 0,
-        YEAR: parseInt(item.YEAR) || 0,
-      }))
-
-    return filtered
-  }
-
-  const getRankedData = (data, year) => {
-    // 년도별로 필터링하고 생산량 기준 정렬 후 순위 부여
-    const yearData = year 
-      ? data.filter(item => item.YEAR === year)
-      : data
-    
-    return yearData
-      .sort((a, b) => b.OUTTRN_SM - a.OUTTRN_SM) // 생산량 내림차순
-      .map((item, index) => ({
-        ...item,
-        rank: index + 1
-      }))
   }
 
   const formatNumber = (num) => {
@@ -126,7 +65,7 @@ function VegetablesProduction({ onBack }) {
   return (
     <div className="vegetables-production">
       <div className="vegetables-header">
-        <button onClick={onBack} className="back-button">← 뒤로가기</button>
+        <button onClick={() => navigate('/')} className="back-button">← 뒤로가기</button>
         <h2>🥬 채소류 생산량 통계</h2>
       </div>
 

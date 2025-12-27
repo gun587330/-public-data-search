@@ -45,37 +45,13 @@ code {
   margin-top: 10px;
 }
 
+/* 라우트 컨텐츠 영역 */
 .main-container {
   flex: 1;
-  display: flex;
-  gap: 20px;
   padding: 20px;
   max-width: 1800px;
   margin: 0 auto;
   width: 100%;
-  min-height: calc(100vh - 150px);
-}
-
-.left-panel {
-  flex: 1;
-  min-width: 0;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.right-panel {
-  flex: 1;
-  min-width: 0;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
 }
 
 @media (max-width: 1024px) {
