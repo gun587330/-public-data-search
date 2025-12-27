@@ -8,9 +8,9 @@ const API_KEY = import.meta.env.VITE_API_KEY || '0db405d287f1020dccb58c108ac0a1a
 // 농림축산식품 공공데이터 포털 API 엔드포인트
 // 샘플: /openapi/sample/{TYPE}/Grid_20210909000000000613_1/{START_INDEX}/{END_INDEX} (최대 5건)
 // 실제: /openapi/{API_KEY}/{TYPE}/Grid_20210909000000000613_1/{START_INDEX}/{END_INDEX}
-// 개발 환경: Vite 프록시 사용, 프로덕션: 직접 API 서버 주소 사용
+// 개발 환경: Vite 프록시 사용, 프로덕션: Netlify Functions 프록시 사용
 const BASE_URL = import.meta.env.PROD 
-  ? 'http://211.237.50.150:7080/openapi'  // 프로덕션: 직접 API 서버 주소
+  ? '/.netlify/functions/proxy/openapi'  // 프로덕션: Netlify Functions 프록시 (HTTPS)
   : '/openapi'  // 개발: Vite 프록시 사용
 const API_URL = 'Grid_20210909000000000613_1'
 const USE_SAMPLE = false // 샘플 API 사용 여부 (true: 최대 5건, false: 전체 조회 가능)
