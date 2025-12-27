@@ -1,0 +1,195 @@
+.vegetables-production {
+  padding: 20px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.vegetables-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.back-button {
+  padding: 8px 16px;
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.3s ease;
+}
+
+.back-button:hover {
+  background: #5a6268;
+}
+
+.vegetables-header h2 {
+  margin: 0;
+  color: #333;
+  font-size: 1.8rem;
+}
+
+.vegetables-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #667eea;
+}
+
+.vegetables-loading .spinner {
+  border: 4px solid rgba(102, 126, 234, 0.3);
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.year-filter {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.year-filter label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  color: #333;
+}
+
+.year-filter select {
+  padding: 8px 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.year-filter select:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.vegetables-summary {
+  margin-bottom: 15px;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.vegetables-table-container {
+  overflow-x: auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.vegetables-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+.vegetables-table thead {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.vegetables-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.vegetables-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.vegetables-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.vegetables-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.rank-cell {
+  font-weight: bold;
+  color: #667eea;
+  text-align: center;
+  width: 60px;
+}
+
+.crop-name {
+  font-weight: 600;
+  color: #333;
+  min-width: 120px;
+}
+
+.category {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.production {
+  font-weight: 600;
+  color: #28a745;
+  text-align: right;
+}
+
+.area {
+  text-align: right;
+  color: #666;
+}
+
+.yield {
+  text-align: right;
+  color: #666;
+}
+
+.year {
+  text-align: center;
+  color: #666;
+  width: 80px;
+}
+
+.no-data {
+  text-align: center;
+  padding: 40px;
+  color: #999;
+}
+
+@media (max-width: 768px) {
+  .vegetables-production {
+    padding: 10px;
+  }
+
+  .vegetables-header h2 {
+    font-size: 1.4rem;
+  }
+
+  .vegetables-table {
+    font-size: 0.85rem;
+  }
+
+  .vegetables-table th,
+  .vegetables-table td {
+    padding: 8px 10px;
+  }
+}
+

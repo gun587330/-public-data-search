@@ -47,3 +47,4 @@ function MonthlyChart({ data, fullWidth = false }) {
 
 export default MonthlyChart
 
+

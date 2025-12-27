@@ -52,3 +52,4 @@ function CropChart({ data, fullWidth = false }) {
 
 export default CropChart
 
+

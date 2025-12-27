@@ -81,3 +81,4 @@ function SensorChart({ data, fullWidth = false }) {
 
 export default SensorChart
 
+
